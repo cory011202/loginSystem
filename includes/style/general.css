@@ -1,0 +1,40 @@
+body
+{
+    background-color:black;
+    margin: 0 auto;
+}
+
+#wrapper
+{
+    margin: 0 auto;
+}
+label
+{
+    color:blue;
+    width:100;
+    float:left;
+    text-align:right;
+    display:block;
+    padding-right: 5px;
+}
+
+form
+{
+    margin:auto;
+    width: 350px;
+    background-color: black;
+    text-align: left;
+    padding: 5px 5px 5px 5px;
+
+}
+
+input
+{
+    text-align: left;
+    width: auto;
+}
+
+.testdiv
+{
+    margin-left: 104px;
+}
