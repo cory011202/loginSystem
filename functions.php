@@ -2,7 +2,7 @@
 
 function createsessions($username,$password){
     //Add additional member to Session array as per requirement
-    session_register();
+    session_start();
 
     $_SESSION["gdusername"] = $username;
     $_SESSION["gdpassword"] = md5($password);

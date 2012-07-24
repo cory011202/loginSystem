@@ -27,7 +27,7 @@ $links = array (
 //echo $links['readMusic'];
 //print_r($links);
 if (checkLoggedin()){
-    echo "<H1>You are already logged in - <A href = \"login.php?do=logout\">logout</A></h1>";
+    echo "<H1>You are already logged in - <A href = \"login.php?do=logout\">logout now</A></h1>";
     foreach($rights as $right){
         $key = array_search("$right", $rights);
             if($userAccess & $right ){
@@ -42,4 +42,6 @@ if (checkLoggedin()){
     echo "<H1>You are not logged in - <A href = \"login.php\">login</A></h1></h1>";
     header("location: login.php");
 }
+
+#This is added to test git
 ?>
