@@ -31,7 +31,8 @@ function confirmUser($username,$password){
     while($row = mysql_fetch_array($userQuery)){
         $regUser = $row['userName'];
         $regPassword = $row['password'];
-        $access = $row['access'];
+        //comment out for now will reactivate when I figure out how to properly return the values
+        //$access = $row['access'];
         $active = $row['active'];
     }
 

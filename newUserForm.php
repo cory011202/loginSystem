@@ -45,7 +45,7 @@
             <input type="password" name="password" id="password" />
 
             <label>
-                Conf Pass:
+                Conf Password:
                 <span class="small">Confirm password</span>
             </label>
             <input type="password" name="confPassword" id="confPassword" />
