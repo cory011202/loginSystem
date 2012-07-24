@@ -1,23 +1,13 @@
 <?php
 
-function createsessions($username,$password,$access){
+function createsessions($username,$password,$access,$remme){
     //Add additional member to Session array as per requirement
     //session_register();
 
     $_SESSION["gdusername"] = $username;
     $_SESSION["gdpassword"] = md5($password);
     $_SESSION["gdaccess"] = $access;
-    
-    if(isset($_POST['remme']))
-    {
-            echo "Remember me is set";
-        //Add additional member to cookie array as per requirement
-/*        setcookie("gdusername", $_SESSION['gdusername'], time()+60*60*24*100, "/");
-        setcookie("gdpassword", $_SESSION['gdpassword'], time()+60*60*24*100, "/");
-        setcookie("gdUserRights", $_SESSION['gdUserRights'], time()+60*60*24*100, "/");*/
-        return;
-
-    }
+    $_SESSION["remme"] = $remme;
 }
 
 function clearsessionscookies(){

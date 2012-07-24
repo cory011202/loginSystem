@@ -2,10 +2,10 @@
 ob_start();
 session_start();
 echo "Welcome " . $_SESSION['gdusername'];
-//echo $_SESSION['gdpassword'];
+
 $userAccess = $_SESSION['gdaccess'];
 require_once ("includes/functions.php");
-//build the array to see what they have access to
+//build the array to see what they have access to.
 $rights = array(
          "readMusic" => pow(2, 0),
          "readMovies" => pow(2, 1),
@@ -19,13 +19,14 @@ $rights = array(
          "usermanager" => pow(2, 9),
          "systemadmin" => pow(2, 10)
       );
+
+//create the array of links to add to the page based on login.
 $links = array (
     "readMusic" => "./media/music.php",
     "readMovies" => "./media/movies.php",
     "readTV" => "./media/tv.php"
 );
-//echo $links['readMusic'];
-//print_r($links);
+
 if (checkLoggedin()){
     echo "<H1>You are already logged in - <A href = \"login.php?do=logout\">logout</A></h1>";
     foreach($rights as $right){
@@ -43,5 +44,4 @@ if (checkLoggedin()){
     header("location: login.php");
 }
 
-#This is added to test git
 ?>
