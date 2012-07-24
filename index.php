@@ -25,7 +25,7 @@ $links = array (
     "readMusic" => "./media/music.php",
     "readMovies" => "./media/movies.php",
     "readTV" => "./media/tv.php",
-    "systemadmin" => "index.php"
+    "systemadmin" => "/admin/index.php"
 );
 
 if (checkLoggedin()){

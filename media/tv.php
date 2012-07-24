@@ -142,7 +142,7 @@ Feel free to add, delete or alter these
 */
 
 $indexfiles = array (
-				'index.html',
+				'index.php',
 				'index.htm',
 				'default.htm',
 				'default.html'

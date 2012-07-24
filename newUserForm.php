@@ -2,6 +2,7 @@
 <head>
 <title>New User Signup</title>
 <link rel="stylesheet" type="text/css" href="includes/style/general.css" />
+
 </head> 
 <body>
     <div id="stylized" class="myform">

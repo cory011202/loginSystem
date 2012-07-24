@@ -129,6 +129,30 @@ function checkAccess($access){
    }//end if
 }
 
+function getInactiveUsers() {
+    $i=0;
+    //create new object for db connection
+    $connection = new inc_dataBase();
+    //connect to the db
+    $connection->connect();
+    $userInactiveQuery = mysql_query("SELECT id, userName, concat(fName, ' ' ,lName) as name, email FROM users WHERE active ='0'")or die(mysql_error());
+    mysql_query($userInactiveQuery);
+
+    while($row = mysql_fetch_array($userInactiveQuery)){
+      echo $row['id'];
+      echo $row['userName'];
+      echo $row['name'];
+      echo $row['email'] . "<br />";
+      $i++;
+    }
+    echo "there are " . $i . "inactive users";
+    //return $access;
+    //disconnect from the db
+    $connection->disConnect();
+}
+
+
+
 function initialRecurseDir($dir) {
     //if the $dir is a dir then continue
     if(is_dir($dir)) {
