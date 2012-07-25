@@ -1,9 +1,9 @@
 <?php
 ob_start();
 session_start();
-echo "Welcome " . $_SESSION['gdusername'];
+echo "Welcome " . $_SESSION['gdUserName'];
 
-$userAccess = $_SESSION['gdaccess'];
+$userAccess = $_SESSION['gdAccess'];
 require_once ("includes/functions.php");
 //build the array to see what they have access to.
 $rights = array(
@@ -46,3 +46,13 @@ if (checkLoggedin()){
 }
 
 ?>
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome CoryPowell.com</title>
+    <link type="text/css" rel="stylesheet" href="includes/style/general.css">
+</head>
+<body>
+</body>
+</html>
