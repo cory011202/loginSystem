@@ -40,14 +40,48 @@ if($returnurl == ""){
             //if a user is not logged in then display the login form. this form will then use the $_GET and append the url
             // and reload the page then send it below to check the username and pw.
             ?>
+            <div id="loginWrapper" class="loginForm">
+                <form id="form"  name="form" method="POST" action="login.php?do=login">
+                    <table id="loginTable">
+                        <tr >
+                            <td colspan="2">
+                                <h1>Restricted site please login below.</h1>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="tdLabel">
+                                Username:
+                            </td>
+                            <td class="tdInput">
+                                <input type="text" name="userName" id="userNameId" />
+                                <!--Not sure if this is needed-->
+                                <input TYPE="hidden" name="returnurl" value="<?php $returnurl ?>">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="tdLabel">
+                                Password:
+                            </td>
+                            <td class="tdInput">
+                                <input type="password" name="password" id="passwordold" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button type="submit">Login</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
             <div id="stylized" class="myform">
-                <form id="form" name="form" method="POST" action="login.php?do=login">
+                <form id="formold" name="form" method="POST" action="login.php?do=login">
                     <h1>Restricted site please login below.</h1>
 
                     <label>
                         Username:
                     </label>
-                    <input type="text" name="userName" id="userNameId" />
+                    <input type="text" name="userName" id="userNameIdold" />
                     <!--Not sure if this is needed-->
                     <input TYPE="hidden" name="returnurl" value="<?php $returnurl ?>">
 
@@ -57,7 +91,7 @@ if($returnurl == ""){
                     <input type="password" name="password" id="password" />
 
                     <button type="submit">Login</button>
-                    <div class="spacer"></div>
+                    <div class="spacer"><a href="newUserForm.php">Click to request access.</a></div>
                 </form>
             </div>
             <?php
