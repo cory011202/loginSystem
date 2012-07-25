@@ -12,7 +12,16 @@ require_once("includes/db.php");
 
 //$returnurl = urlencode(isset($_GET["returnurl"])?$_GET["returnurl"]:"");
 //$returnurl = "do=logout";
-
+?>
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome CoryPowell.com</title>
+    <link type="text/css" rel="stylesheet" href="../includes/style/general.css">
+</head>
+<body>
+<?php
 if($returnurl == ""){
     $returnurl = urlencode(isset($_POST["returnurl"])?$_POST["returnurl"]:"");
     //this get what is appended to the url example login.php?do= something in the switch statemnt below
@@ -54,24 +63,42 @@ if($returnurl == ""){
                 </TR>
             </form>
             </TABLE>
+        <div id="stylized" class="myform">
+            <form id="form" name="form" method="POST" action="newUserFormProcess.php">
+                <h1>Restricted site please login below.</h1>
+
+                <label>
+                    Username:
+                </label>
+                <input type="text" name="userName" id="userNameId" />
+
+                <label>
+                    Password:
+                </label>
+                <input type="password" name="password" id="password" />
+
+                <button type="submit">Login</button>
+                <div class="spacer"></div>
+            </form>
+        </div>
         <?php
         }
         break;
     //check 2 This will check to see that a person has tried to login and the returnurl is appended
     case "login":
         //if a user tries this then it will check to see if the username and password are set
-        $username = isset($_POST["username"])?$_POST["username"]:"";
+        $userName = isset($_POST["userName"])?$_POST["userName"]:"";
         $password = isset($_POST["password"])?$_POST["password"]:"";
         //if statement to check if the username or password is blank
-        if ($username=="" or $password=="" ){
+        if ($userName=="" or $password=="" ){
             echo "<h1>Username or password is blank</h1>";
             clearsessionscookies();
             header("location: login.php?returnurl=$returnurl");
         }else{
             if(confirmuser($username,saltPassword($password))){
-                $access = getUserAccess($username);
+                $access = getUserAccess($userName);
                 $remme = $_POST['remme'];
-                createsessions($username,$password,$access,$remme);
+                createsessions($userName,$password,$access,$remme);
                 if ($returnurl<>""){
                     header("location: $returnurl");
                 }else{
@@ -92,3 +119,6 @@ if($returnurl == ""){
     }
 }//end if
 ?>
+
+</body>
+</html>
