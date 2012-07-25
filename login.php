@@ -9,16 +9,16 @@ ob_start();
 //get all the required files
 require_once("includes/functions.php");
 require_once("includes/db.php");
+//seems to work without this line of code I am leaving it in here till I know for sure what it does
+$returnurl = urlencode(isset($_GET["returnurl"])?$_GET["returnurl"]:"");
 
-//$returnurl = urlencode(isset($_GET["returnurl"])?$_GET["returnurl"]:"");
-//$returnurl = "do=logout";
 ?>
 <!DOCTYPE HTML>
 <html lang="en-US">
 <head>
     <meta charset="UTF-8">
     <title>Welcome CoryPowell.com</title>
-    <link type="text/css" rel="stylesheet" href="../includes/style/general.css">
+    <link type="text/css" rel="stylesheet" href="includes/style/general.css">
 </head>
 <body>
 <?php
@@ -40,48 +40,27 @@ if($returnurl == ""){
             //if a user is not logged in then display the login form. this form will then use the $_GET and append the url
             // and reload the page then send it below to check the username and pw.
             ?>
-            <form NAME="login1" ACTION="login.php?do=login" METHOD="POST" ONSUBMIT="return aValidator();">
-            <input TYPE="hidden" name="returnurl" value="<?php $returnurl ?>">
-            <TABLE cellspacing="3" align="center">
-                <tr>
-                    <td colspan="4"><h1>Welcome to  my Login System.</h1></td>
-                </tr>
-                <TR>
-                    <TD>Username:</TD>
-                    <TD><input TYPE="TEXT" NAME="username"></TD>
-                    <TD>Password:</TD>
-                    <TD><input TYPE="PASSWORD" NAME="password"></TD>
-                </TR>
-                <TR>
-                    <TD colspan="4" ALIGN="center"><input TYPE="CHECKBOX" NAME="remme">&nbsp;Remember me for the next time I visit</TD>
-                </TR>
-                <TR>
-                    <TD colspan="4" ALIGN="center"><a href="newUserForm.php">Click here to request access.</a></TD>
-                </TR>
-                <TR>
-                    <TD ALIGN="CENTER" COLSPAN="4"><input TYPE="SUBMIT" name="submit" value="Login"><input TYPE="reset" name="reset" value="Reset"></TD>
-                </TR>
-            </form>
-            </TABLE>
-        <div id="stylized" class="myform">
-            <form id="form" name="form" method="POST" action="newUserFormProcess.php">
-                <h1>Restricted site please login below.</h1>
+            <div id="stylized" class="myform">
+                <form id="form" name="form" method="POST" action="login.php?do=login">
+                    <h1>Restricted site please login below.</h1>
 
-                <label>
-                    Username:
-                </label>
-                <input type="text" name="userName" id="userNameId" />
+                    <label>
+                        Username:
+                    </label>
+                    <input type="text" name="userName" id="userNameId" />
+                    <!--Not sure if this is needed-->
+                    <input TYPE="hidden" name="returnurl" value="<?php $returnurl ?>">
 
-                <label>
-                    Password:
-                </label>
-                <input type="password" name="password" id="password" />
+                    <label>
+                        Password:
+                    </label>
+                    <input type="password" name="password" id="password" />
 
-                <button type="submit">Login</button>
-                <div class="spacer"></div>
-            </form>
-        </div>
-        <?php
+                    <button type="submit">Login</button>
+                    <div class="spacer"></div>
+                </form>
+            </div>
+            <?php
         }
         break;
     //check 2 This will check to see that a person has tried to login and the returnurl is appended
@@ -95,10 +74,9 @@ if($returnurl == ""){
             clearsessionscookies();
             header("location: login.php?returnurl=$returnurl");
         }else{
-            if(confirmuser($username,saltPassword($password))){
+            if(confirmuser($userName,saltPassword($password))){
                 $access = getUserAccess($userName);
-                $remme = $_POST['remme'];
-                createsessions($userName,$password,$access,$remme);
+                createsessions($userName,$password,$access);
                 if ($returnurl<>""){
                     header("location: $returnurl");
                 }else{
