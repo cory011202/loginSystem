@@ -56,10 +56,70 @@ p, h1, form, button{border:0; margin:0; padding:0;}
     margin-left:150px;
     width:125px;
     height:31px;
-    background:#666666 url(img/button.png) no-repeat;
+    background:#666666 ;
     text-align:center;
     line-height:31px;
     color:#FFFFFF;
     font-size:11px;
     font-weight:bold;
+}
+/*Main login page*/
+.loginForm{
+    margin:0 auto;
+    width:400px;
+    padding:14px;
+}
+#loginWrapper{
+    border:solid 2px #b7ddf2;
+    background:#ebf4fb;
+}
+
+#loginWrapper p{
+    font-size:11px;
+    color:#666666;
+    margin-bottom:20px;
+    border-bottom:solid 1px #b7ddf2;
+    padding-bottom:10px;
+}
+
+#loginWrapper h1{
+    font-size:14px;
+    font-weight:bold;
+    margin-bottom:8px;
+    text-align: left;
+}
+#loginTable{
+    width: 400px;
+    text-align: center;
+}
+
+.tdLabel {
+    display:block;
+    font-weight:bold;
+    text-align:right;
+    width:140px;
+    float:left;
+}
+
+.tdInput{
+    float:left;
+    font-size:12px;
+    padding:4px 2px;
+    border:solid 1px #aacfe4;
+    width:200px;
+    margin:2px 0 20px 10px;
+}
+
+#loginTable button{
+    clear:both;
+    margin-left:150px;
+    width:125px;
+    height:31px;
+    background:#666666 ;
+    text-align:center;
+    line-height:31px;
+    color:#FFFFFF;
+    font-size:11px;
+    font-weight:bold;
+
 }
