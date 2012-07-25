@@ -1,32 +1,31 @@
 <?php
 
-function createsessions($username,$password,$access,$remme){
+function createsessions($userName,$password,$access){
     //Add additional member to Session array as per requirement
     //session_register();
 
-    $_SESSION["gdusername"] = $username;
-    $_SESSION["gdpassword"] = md5($password);
-    $_SESSION["gdaccess"] = $access;
-    $_SESSION["remme"] = $remme;
+    $_SESSION["gdUserName"] = $userName;
+    $_SESSION["gdPassword"] = md5($password);
+    $_SESSION["gdAccess"] = $access;
 }
 
 function clearsessionscookies(){
-    unset($_SESSION['gdusername']);
-    unset($_SESSION['gdpassword']);
+    unset($_SESSION['gdUserName']);
+    unset($_SESSION['gdPassword']);
     
     session_unset();    
     session_destroy(); 
 
-    setcookie ("gdusername", "",time()-60*60*24*100, "/");
-    setcookie ("gdpassword", "",time()-60*60*24*100, "/");
+    setcookie ("gdUserName", "",time()-60*60*24*100, "/");
+    setcookie ("gdPassword", "",time()-60*60*24*100, "/");
 }
 
-function confirmUser($username,$password){
+function confirmUser($userName,$password){
     //create new object for db connection
     $connection = new inc_dataBase();
     //connect to the db
     $connection->connect();
-    $userQuery = mysql_query("SELECT userName, password, access, active  FROM users WHERE userName = '$username'")or die(mysql_error());
+    $userQuery = mysql_query("SELECT userName, password, access, active  FROM users WHERE userName = '$userName'")or die(mysql_error());
     mysql_query($userQuery);
     while($row = mysql_fetch_array($userQuery)){
         $regUser = $row['userName'];
@@ -36,8 +35,8 @@ function confirmUser($username,$password){
         $active = $row['active'];
     }
 
-    /* Validate from the database but as for now just demo username and password */
-    if($username == $regUser && $password == $regPassword && $active){
+    /* Validate from the database but as for now just demo userName and password */
+    if($userName == $regUser && $password == $regPassword && $active){
         return true;
     }else{
         return false;
@@ -48,19 +47,19 @@ function confirmUser($username,$password){
 
 function checkLoggedin(){
     //if statement to see if the user is logged in
-    if(isset($_SESSION['gdusername']) AND isset($_SESSION['gdpassword'])){
+    if(isset($_SESSION['gdUserName']) AND isset($_SESSION['gdPassword'])){
         // if the users is already logged in the return true
         return true;
-    //else if they are not logged in but are logging in then this else if will check that the username and pw are
+    //else if they are not logged in but are logging in then this else if will check that the userName and pw are
     //correct and will create the session.
-    }elseif(isset($_COOKIE['gdusername']) && isset($_COOKIE['gdpassword'])){
+    }elseif(isset($_COOKIE['gdUserName']) && isset($_COOKIE['gdPassword'])){
         //nested if statement that will be checked from the login page
-        if(confirmUser($_COOKIE['gdusername'],$_COOKIE['gdpassword'])){
-            //if the username and pw are correct then the session will be created and then will return true
-            createsessions($_COOKIE['gdusername'],$_COOKIE['gdpassword']);
+        if(confirmUser($_COOKIE['gdUserName'],$_COOKIE['gdPassword'])){
+            //if the userName and pw are correct then the session will be created and then will return true
+            createsessions($_COOKIE['gdUserName'],$_COOKIE['gdPassword']);
             return true;
         }else{
-            //if they do not have a correct username and pw the statement will return false and will clear all sessions
+            //if they do not have a correct userName and pw the statement will return false and will clear all sessions
             //and cookies
             clearsessionscookies();
             return false;
@@ -85,12 +84,12 @@ function saltPassword($password){
     return $password;
 }
 
-function getUserAccess($username){
+function getUserAccess($userName){
     //create new object for db connection
         $connection = new inc_dataBase();
         //connect to the db
         $connection->connect();
-        $userQuery = mysql_query("SELECT access FROM users WHERE userName = '$username'")or die(mysql_error());
+        $userQuery = mysql_query("SELECT access FROM users WHERE userName = '$userName'")or die(mysql_error());
         mysql_query($userQuery);
         while($row = mysql_fetch_array($userQuery)){
             $access = $row['access'];
