@@ -74,26 +74,6 @@ if($returnurl == ""){
                     </table>
                 </form>
             </div>
-            <div id="stylized" class="myform">
-                <form id="formold" name="form" method="POST" action="login.php?do=login">
-                    <h1>Restricted site please login below.</h1>
-
-                    <label>
-                        Username:
-                    </label>
-                    <input type="text" name="userName" id="userNameIdold" />
-                    <!--Not sure if this is needed-->
-                    <input TYPE="hidden" name="returnurl" value="<?php $returnurl ?>">
-
-                    <label>
-                        Password:
-                    </label>
-                    <input type="password" name="password" id="password" />
-
-                    <button type="submit">Login</button>
-                    <div class="spacer"><a href="newUserForm.php">Click to request access.</a></div>
-                </form>
-            </div>
             <?php
         }
         break;
